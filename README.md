@@ -34,7 +34,7 @@ Library (`sps`):
 - timer (git submodule)
 
 Application (`sequential-gallery`):
-- Qt5 (`brew install qt` / `sudo apt install qt5-default`)
+- Qt5 (`brew install qt@5` / `sudo apt install qt5-default`)
 - string-util (git submodule)
 - visoptslider (git submodule)
 - enhancer (git submodule)
@@ -54,7 +54,7 @@ Eigen (3.x.x) and Qt (5.x.x) need to be installed beforehand.
 
 macOS:
 ```sh
-brew install eigen qt
+brew install eigen qt@5
 ```
 
 Ubuntu 18.04:
