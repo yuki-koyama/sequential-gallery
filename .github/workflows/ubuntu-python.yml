@@ -1,0 +1,27 @@
+name: Ubuntu-python
+
+on: [push]
+
+jobs:
+  build-test:
+
+    runs-on: ubuntu-18.04
+
+    strategy:
+      matrix:
+        python-version: [ '3.6', '3.7', '3.8' ]
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-python@v1
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: install-build-dependencies
+      run: sudo apt-get install libeigen3-dev
+    - name: submodule
+      run: git submodule update --init --recursive
+    - name: pip-install-pysps
+      run: pip3 install . --verbose
+    - name: test
+      run: |
+        python3 python-tests/test.py
