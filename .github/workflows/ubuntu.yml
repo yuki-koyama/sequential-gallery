@@ -19,5 +19,7 @@ jobs:
       run: |
         cmake -DCMAKE_BUILD_TYPE=Release -DZIN_TEST_PYTHON_SCRIPTS=ON -DZIN_EXPERIMENT_SCALE_MINIMUM=ON ZIN_BUILD_APP=ON .
         make
+    - name: install-test-dependencies
+      run: pip3 install matplotlib numpy pandas seaborn
     - name: ctest
       run: ctest
