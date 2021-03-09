@@ -1,0 +1,23 @@
+name: Ubuntu
+
+on: [push]
+
+jobs:
+  build-test:
+
+    runs-on: ubuntu-18.04
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: install-build-dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install libeigen3-dev qt5-default
+    - name: submodule
+      run: git submodule update --init --recursive
+    - name: build
+      run: |
+        cmake -DCMAKE_BUILD_TYPE=Release -DZIN_TEST_PYTHON_SCRIPTS=ON -DZIN_EXPERIMENT_SCALE_MINIMUM=ON ZIN_BUILD_APP=ON .
+        make
+    - name: ctest
+      run: ctest
