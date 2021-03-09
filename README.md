@@ -1,5 +1,11 @@
 # Sequential Gallery
 
+[![macOS](https://github.com/yuki-koyama/sequential-gallery/actions/workflows/macos.yml/badge.svg)](https://github.com/yuki-koyama/sequential-gallery/actions/workflows/macos.yml)
+[![Ubuntu](https://github.com/yuki-koyama/sequential-gallery/actions/workflows/ubuntu.yml/badge.svg)](https://github.com/yuki-koyama/sequential-gallery/actions/workflows/ubuntu.yml)
+[![macOS-python](https://github.com/yuki-koyama/sequential-gallery/actions/workflows/macos-python.yml/badge.svg)](https://github.com/yuki-koyama/sequential-gallery/actions/workflows/macos-python.yml)
+[![Ubuntu-python](https://github.com/yuki-koyama/sequential-gallery/actions/workflows/ubuntu-python.yml/badge.svg)](https://github.com/yuki-koyama/sequential-gallery/actions/workflows/ubuntu-python.yml)
+[![GitHub license](https://img.shields.io/github/license/yuki-koyama/sequential-gallery)](https://github.com/yuki-koyama/sequential-gallery)
+
 This repository offers an implementation of *Sequential Gallery* and a library for its core algorithm, *sequential plane search*. It is about a human-in-the-loop Bayesian optimization; see our SIGGRAPH 2020 paper for details.
 
 ![](./docs/representative.jpg)
