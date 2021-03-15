@@ -73,6 +73,14 @@ cmake ../
 make
 ```
 
+## Python
+
+`pysps` can be built and installed by the `pip` command:
+```sh
+pip install git+https://github.com/yuki-koyama/sequential-gallery
+```
+Make sure that Eigen (and other necessary build tools) is installed on the system beforehand.
+
 ## Implementation Notes
 
 ![](./docs/names.jpg)
