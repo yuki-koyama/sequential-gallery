@@ -28,25 +28,25 @@ https://koyama.xyz/project/sequential_gallery/
 ## Dependencies
 
 Library (`sps`):
-- sequential-line-search (git submodule)
-- Eigen (`brew install eigen` / `sudo apt install libeigen3-dev`)
-- mathtoolbox (git submodule)
-- timer (git submodule)
+- sequential-line-search https://github.com/yuki-koyama/sequential-line-search (git submodule)
+- Eigen http://eigen.tuxfamily.org/ (`brew install eigen` / `sudo apt install libeigen3-dev`)
+- mathtoolbox https://github.com/yuki-koyama/mathtoolbox (git submodule)
+- timer https://github.com/yuki-koyama/timer (git submodule)
 
 Application (`sequential-gallery`):
-- Qt5 (`brew install qt@5` / `sudo apt install qt5-default`)
-- string-util (git submodule)
-- visoptslider (git submodule)
-- enhancer (git submodule)
+- Qt5 http://doc.qt.io/qt-5/ (`brew install qt@5` / `sudo apt install qt5-default`)
+- string-util https://github.com/yuki-koyama/string-util (git submodule)
+- visoptslider https://github.com/yuki-koyama/visoptslider (git submodule)
+- enhancer https://github.com/yuki-koyama/enhancer (git submodule)
 
 Python bindings (`pysps`):
-- pybind11 (git submodule)
+- pybind11 https://github.com/pybind/pybind11 (git submodule)
 
 Experiment:
-- optimization-test-functions (git submodule)
+- optimization-test-functions https://github.com/yuki-koyama/optimization-test-functions (git submodule)
 
 Test:
-- Google Test (git submodule)
+- Google Test https://github.com/google/googletest (git submodule)
 
 ## Prerequisites
 
