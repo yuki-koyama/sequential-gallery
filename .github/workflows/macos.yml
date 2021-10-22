@@ -9,6 +9,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.7'
     - name: install-build-dependencies
       run: brew install eigen qt@5
     - name: submodule
