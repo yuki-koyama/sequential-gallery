@@ -83,7 +83,7 @@ Make sure that Eigen (and other necessary build tools) is installed on the syste
 
 ## Implementation Notes
 
-![](./docs/names.jpg)
+- [Interpretation of grid resolution and grid cell indices](./docs/names.jpg).
 
 ## Code Format
 
