@@ -115,10 +115,10 @@ int main(int argc, char* argv[])
 
 #if defined(ZIN_EXPERIMENT_USE_LAST_SELECTION_STRATEGY)
     constexpr auto sps_center_strategy = sps::PlaneCenterSelectionStrategy::LastSelection;
-    constexpr auto sls_slider_strategy = sequential_line_search::SliderEndSelectionStrategy::LastSelection;
+    constexpr auto sls_slider_strategy = sequential_line_search::CurrentBestSelectionStrategy::LastSelection;
 #else
     constexpr auto     sps_center_strategy = sps::PlaneCenterSelectionStrategy::LargestExpectValue;
-    constexpr auto     sls_slider_strategy = sequential_line_search::SliderEndSelectionStrategy::LargestExpectValue;
+    constexpr auto     sls_slider_strategy = sequential_line_search::CurrentBestSelectionStrategy::LargestExpectValue;
 #endif
 
     // Random seed
@@ -294,7 +294,7 @@ int main(int argc, char* argv[])
                     residuals(iter, trial) = (x_best - x_optimal).norm();
                     values(iter, trial)    = f_best;
 
-                    optimizer.SubmitLineSearchResult(w_best);
+                    optimizer.SubmitFeedbackData(w_best);
                 }
             };
 
