@@ -32,8 +32,8 @@ void sps::Optimizer::SubmitData(const Eigen::VectorXd& x_preferred, const std::v
 {
     m_data->AddNewPoints(x_preferred, x_others, true, k_merge_threshold);
 
-    m_regressor = std::make_shared<sequential_line_search::PreferenceRegressor>(m_data->m_X,
-                                                                                m_data->m_D,
+    m_regressor = std::make_shared<sequential_line_search::PreferenceRegressor>(m_data->GetX(),
+                                                                                m_data->GetD(),
                                                                                 m_use_map_hyperparams,
                                                                                 k_default_signal_level,
                                                                                 k_default_length_scale,
