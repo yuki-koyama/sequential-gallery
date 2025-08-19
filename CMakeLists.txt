@@ -1,16 +1,19 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.16)
 
-project(zin CXX)
+# Declare the project and the languages it uses.
+project(zin LANGUAGES CXX)
 
 ######################################################################
 # Compiler settings
 ######################################################################
 
+# Enforce C++17 across all targets.
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 if(ZIN_BUILD_PYTHON_BINDINGS)
+  # Shared objects such as Python modules need position independent code.
   set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 endif()
 
@@ -37,6 +40,7 @@ endif()
 # Prerequisites
 ######################################################################
 
+# Eigen3 provides linear algebra utilities.
 find_package(Eigen3 REQUIRED)
 if((NOT TARGET Eigen3::Eigen) AND (DEFINED EIGEN3_INCLUDE_DIR))
   add_library(AliasEigen3 INTERFACE)
@@ -90,8 +94,9 @@ endif()
 # Core library
 ######################################################################
 
-file(GLOB lib_headers ${CMAKE_CURRENT_SOURCE_DIR}/sps/include/sps/*.hpp)
-file(GLOB lib_sources ${CMAKE_CURRENT_SOURCE_DIR}/sps/src/*.cpp)
+# Collect library sources. CONFIGURE_DEPENDS lets CMake track new files.
+file(GLOB CONFIGURE_DEPENDS lib_headers ${CMAKE_CURRENT_SOURCE_DIR}/sps/include/sps/*.hpp)
+file(GLOB CONFIGURE_DEPENDS lib_sources  ${CMAKE_CURRENT_SOURCE_DIR}/sps/src/*.cpp)
 
 add_library(sps STATIC ${lib_headers} ${lib_sources})
 target_include_directories(sps PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/sps/include)
@@ -102,8 +107,9 @@ target_link_libraries(sps PUBLIC Eigen3::Eigen SequentialLineSearch)
 ######################################################################
 
 if(ZIN_BUILD_APP)
+  # Application sources.
   file(
-    GLOB
+    GLOB CONFIGURE_DEPENDS
     app_sources
     ${CMAKE_CURRENT_SOURCE_DIR}/app/*.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/app/*.cpp
