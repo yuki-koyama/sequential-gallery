@@ -34,7 +34,7 @@ Library (`sps`):
 - timer https://github.com/yuki-koyama/timer (git submodule)
 
 Application (`sequential-gallery`):
-- Qt5 http://doc.qt.io/qt-5/ (`brew install qt@5` / `sudo apt install qt5-default`)
+- Qt5 http://doc.qt.io/qt-5/ (`brew install qt@5` / `sudo apt install qtbase5-dev`)
 - string-util https://github.com/yuki-koyama/string-util (git submodule)
 - visoptslider https://github.com/yuki-koyama/visoptslider (git submodule)
 - enhancer https://github.com/yuki-koyama/enhancer (git submodule)
