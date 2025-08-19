@@ -101,8 +101,8 @@ endif()
 ######################################################################
 
 # Collect library sources. CONFIGURE_DEPENDS lets CMake track new files.
-file(GLOB CONFIGURE_DEPENDS lib_headers ${CMAKE_CURRENT_SOURCE_DIR}/sps/include/sps/*.hpp)
-file(GLOB CONFIGURE_DEPENDS lib_sources  ${CMAKE_CURRENT_SOURCE_DIR}/sps/src/*.cpp)
+file(GLOB lib_headers ${CMAKE_CURRENT_SOURCE_DIR}/sps/include/sps/*.hpp)
+file(GLOB lib_sources ${CMAKE_CURRENT_SOURCE_DIR}/sps/src/*.cpp)
 
 add_library(sps STATIC ${lib_headers} ${lib_sources})
 target_include_directories(sps PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/sps/include)
@@ -115,7 +115,7 @@ target_link_libraries(sps PUBLIC Eigen3::Eigen SequentialLineSearch)
 if(ZIN_BUILD_APP)
   # Application sources.
   file(
-    GLOB CONFIGURE_DEPENDS
+    GLOB
     app_sources
     ${CMAKE_CURRENT_SOURCE_DIR}/app/*.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/app/*.cpp
