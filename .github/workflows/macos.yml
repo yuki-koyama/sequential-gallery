@@ -4,23 +4,22 @@ on: [push]
 
 jobs:
   build-test:
-
     runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-      with:
-        python-version: '3.8'
-    - name: install-build-dependencies
-      run: brew install eigen qt@5
-    - name: submodule
-      run: git submodule update --init --recursive
-    - name: build
-      run: |
-        cmake -DCMAKE_BUILD_TYPE=Release -DZIN_TEST_PYTHON_SCRIPTS=ON -DZIN_EXPERIMENT_SCALE_MINIMUM=ON ZIN_BUILD_APP=ON .
-        make
-    - name: install-test-dependencies
-      run: pip3 install matplotlib numpy pandas seaborn
-    - name: ctest
-      run: ctest
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+      - name: install-build-dependencies
+        run: brew install eigen qt@5
+      - name: submodule
+        run: git submodule update --init --recursive
+      - name: build
+        run: |
+          cmake -DCMAKE_BUILD_TYPE=Release -DZIN_TEST_PYTHON_SCRIPTS=ON -DZIN_EXPERIMENT_SCALE_MINIMUM=ON ZIN_BUILD_APP=ON .
+          make
+      - name: install-test-dependencies
+        run: pip3 install matplotlib numpy pandas seaborn
+      - name: ctest
+        run: ctest --rerun-failed --output-on-failure
