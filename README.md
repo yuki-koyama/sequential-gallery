@@ -57,9 +57,9 @@ macOS:
 brew install eigen qt@5
 ```
 
-Ubuntu 18.04:
+Ubuntu 22.04:
 ```sh
-sudo apt install libeigen3-dev qt5-default
+sudo apt install libeigen3-dev qtbase5-dev
 ```
 
 ## Build
