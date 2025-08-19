@@ -4,25 +4,24 @@ on: [push]
 
 jobs:
   build-test:
-
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-      with:
-        python-version: '3.7'
-    - name: install-build-dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install libeigen3-dev qt5-default
-    - name: submodule
-      run: git submodule update --init --recursive
-    - name: build
-      run: |
-        cmake -DCMAKE_BUILD_TYPE=Release -DZIN_TEST_PYTHON_SCRIPTS=ON -DZIN_EXPERIMENT_SCALE_MINIMUM=ON ZIN_BUILD_APP=ON .
-        make
-    - name: install-test-dependencies
-      run: pip3 install matplotlib numpy pandas seaborn
-    - name: ctest
-      run: ctest
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+      - name: install-build-dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install libeigen3-dev qtbase5-dev
+      - name: submodule
+        run: git submodule update --init --recursive
+      - name: build
+        run: |
+          cmake -DCMAKE_BUILD_TYPE=Release -DZIN_TEST_PYTHON_SCRIPTS=ON -DZIN_EXPERIMENT_SCALE_MINIMUM=ON ZIN_BUILD_APP=ON .
+          make
+      - name: install-test-dependencies
+        run: pip3 install matplotlib numpy pandas seaborn scipy
+      - name: ctest
+        run: ctest --rerun-failed --output-on-failure

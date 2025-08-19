@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-import math
 import pandas as pd
 import os
 import glob
@@ -26,6 +25,7 @@ marker_scales = [
     5,
 ]
 
+
 def visualize_value_together(problem_dir):
     csv_names = [
         "sls-value.csv",
@@ -36,7 +36,7 @@ def visualize_value_together(problem_dir):
     sns.set()
     sns.set_context()
 
-    plt.rcParams['font.sans-serif'] = ["Linux Biolinum", "Linux Biolinum O"]
+    plt.rcParams["font.sans-serif"] = ["Linux Biolinum", "Linux Biolinum O"]
 
     fig = plt.figure(figsize=(4, 4))
     ax = fig.add_subplot(1, 1, 1)
@@ -56,8 +56,19 @@ def visualize_value_together(problem_dir):
 
         df = pd.read_csv(file_path)
 
-        ax.fill_between(df["#Iters"], optimal_value - df["Upper"], optimal_value - df["Lower"], alpha=0.2, cmap="inferno")
-        ax.plot(df["#Iters"], optimal_value - df["Mean"], marker=markers[index], ms=marker_scales[index])
+        ax.fill_between(
+            df["#Iters"],
+            optimal_value - df["Upper"],
+            optimal_value - df["Lower"],
+            alpha=0.2,
+            cmap="inferno",
+        )
+        ax.plot(
+            df["#Iters"],
+            optimal_value - df["Mean"],
+            marker=markers[index],
+            ms=marker_scales[index],
+        )
 
     ax.set_xlim([xlim_min, xlim_max])
     ax.set_ylim([ylim_min, ylim_max])
@@ -74,6 +85,7 @@ def visualize_value_together(problem_dir):
     fig.tight_layout()
 
     plt.savefig(problem_dir + "/value.pdf")
+
 
 def visualize_residuals_together(problem_dir):
     csv_names = [
@@ -112,11 +124,12 @@ def visualize_residuals_together(problem_dir):
 
     plt.savefig(problem_dir + "/residuals.pdf")
 
+
 def visualize_trials(file_name):
     df = pd.read_csv(file_name)
 
     sns.set()
-    sns.set_context() # "paper"
+    sns.set_context()  # "paper"
 
     fig = plt.figure(dpi=300)
     ax = fig.add_subplot(1, 1, 1)
@@ -124,7 +137,7 @@ def visualize_trials(file_name):
     xlim_min = df["#Iters"][0]
     xlim_max = df["#Iters"][df["#Iters"].shape[0] - 1]
     ylim_min = 0.00 if "residual" in file_name else None
-    ylim_max = None # magic number { 0.50, 0.70, 0.90 }
+    ylim_max = None  # magic number { 0.50, 0.70, 0.90 }
 
     ax.set_title(os.path.basename(file_name))
 
@@ -152,7 +165,7 @@ def visualize_stats(file_name):
     df = pd.read_csv(file_name)
 
     sns.set()
-    sns.set_context() # "paper"
+    sns.set_context()  # "paper"
 
     fig = plt.figure(dpi=300)
     ax = fig.add_subplot(1, 1, 1)
@@ -160,7 +173,7 @@ def visualize_stats(file_name):
     xlim_min = df["#Iters"][0]
     xlim_max = df["#Iters"][df["#Iters"].shape[0] - 1]
     ylim_min = 0.00 if "residual" in file_name else None
-    ylim_max = None # magic number { 0.50, 0.70, 0.90 }
+    ylim_max = None  # magic number { 0.50, 0.70, 0.90 }
 
     ax.set_title(os.path.basename(file_name))
 

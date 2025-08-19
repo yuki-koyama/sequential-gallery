@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-import math
 import pandas as pd
 import os
 import glob
@@ -12,7 +11,7 @@ def visualize_trials(file_name):
     df = pd.read_csv(file_name)
 
     sns.set()
-    sns.set_context() # "paper"
+    sns.set_context()  # "paper"
 
     fig = plt.figure(dpi=300)
     ax = fig.add_subplot(1, 1, 1)
@@ -20,7 +19,7 @@ def visualize_trials(file_name):
     xlim_min = df["#Iters"][0]
     xlim_max = df["#Iters"][df["#Iters"].shape[0] - 1]
     ylim_min = 0.00 if "residual" in file_name else None
-    ylim_max = None # magic number { 0.50, 0.70, 0.90 }
+    ylim_max = None  # magic number { 0.50, 0.70, 0.90 }
 
     ax.set_title(os.path.basename(file_name))
 
@@ -50,7 +49,7 @@ def visualize_stats(file_name):
     df = pd.read_csv(file_name)
 
     sns.set()
-    sns.set_context() # "paper"
+    sns.set_context()  # "paper"
 
     fig = plt.figure(dpi=300)
     ax = fig.add_subplot(1, 1, 1)
@@ -58,7 +57,7 @@ def visualize_stats(file_name):
     xlim_min = df["#Iters"][0]
     xlim_max = df["#Iters"][df["#Iters"].shape[0] - 1]
     ylim_min = 0.00 if "residual" in file_name else None
-    ylim_max = None # magic number { 0.50, 0.70, 0.90 }
+    ylim_max = None  # magic number { 0.50, 0.70, 0.90 }
 
     ax.set_title(os.path.basename(file_name))
 

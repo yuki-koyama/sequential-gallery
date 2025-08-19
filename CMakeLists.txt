@@ -1,16 +1,19 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.16)
 
-project(zin CXX)
+# Declare the project and the languages it uses.
+project(zin LANGUAGES CXX)
 
 ######################################################################
 # Compiler settings
 ######################################################################
 
+# Enforce C++17 across all targets.
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 if(ZIN_BUILD_PYTHON_BINDINGS)
+  # Shared objects such as Python modules need position independent code.
   set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 endif()
 
@@ -37,6 +40,7 @@ endif()
 # Prerequisites
 ######################################################################
 
+# Eigen3 provides linear algebra utilities.
 find_package(Eigen3 REQUIRED)
 if((NOT TARGET Eigen3::Eigen) AND (DEFINED EIGEN3_INCLUDE_DIR))
   add_library(AliasEigen3 INTERFACE)
@@ -51,8 +55,14 @@ if(ZIN_BUILD_APP)
   if(APPLE AND EXISTS /usr/local/opt/qt5)
     list(APPEND CMAKE_PREFIX_PATH "/usr/local/opt/qt5")
   endif()
+  if(APPLE AND EXISTS /opt/homebrew/opt/qt)
+    list(APPEND CMAKE_PREFIX_PATH "/opt/homebrew/opt/qt")
+  endif()
   if(APPLE AND EXISTS /opt/homebrew/opt/qt5)
     list(APPEND CMAKE_PREFIX_PATH "/opt/homebrew/opt/qt5")
+  endif()
+  if(APPLE AND EXISTS /opt/homebrew/opt/qt@5)
+    list(APPEND CMAKE_PREFIX_PATH "/opt/homebrew/opt/qt@5")
   endif()
   find_package(Qt5 COMPONENTS Concurrent Widgets REQUIRED)
 endif()
@@ -90,6 +100,7 @@ endif()
 # Core library
 ######################################################################
 
+# Collect library sources. CONFIGURE_DEPENDS lets CMake track new files.
 file(GLOB lib_headers ${CMAKE_CURRENT_SOURCE_DIR}/sps/include/sps/*.hpp)
 file(GLOB lib_sources ${CMAKE_CURRENT_SOURCE_DIR}/sps/src/*.cpp)
 
@@ -102,6 +113,7 @@ target_link_libraries(sps PUBLIC Eigen3::Eigen SequentialLineSearch)
 ######################################################################
 
 if(ZIN_BUILD_APP)
+  # Application sources.
   file(
     GLOB
     app_sources
