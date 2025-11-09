@@ -75,8 +75,10 @@ Eigen::VectorXd sps::AbstractPlane::CalcGridParameters(const GridCellIndex&     
         const auto prev_unscaled_grid_coords = Eigen::Vector2d(static_cast<double>(std::get<0>(prev_grid_cell)),
                                                                static_cast<double>(std::get<1>(prev_grid_cell)));
         const auto center                    = grid_to_coord_scale * prev_unscaled_grid_coords;
+        // Apply scaling before translation so that the refined grid remains inside the
+        // unit square in the canonical coordinate system.
         zoom_transform =
-            zoom_transform * Eigen::Translation2d(center) * Eigen::UniformScaling<double>(inter_level_scale);
+            zoom_transform * Eigen::UniformScaling<double>(inter_level_scale) * Eigen::Translation2d(center);
     }
     const auto unscaled_grid_coords =
         Eigen::Vector2d(static_cast<double>(std::get<0>(grid_cell)), static_cast<double>(std::get<1>(grid_cell)));
