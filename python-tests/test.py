@@ -61,8 +61,10 @@ if __name__ == "__main__":
 
         print(iter, x_best, calc_objective_func(x_best))
 
+        # x_best (the selected point in the plane) is preferred to
+        # other points (the four vertices of the plane)
         x_preferred = x_best
-        x_others = plane.get_vertices() + plane.get_center()
+        x_others = plane.get_vertices()
 
         optimizer.submit_data(x_preferred, x_others)
 
