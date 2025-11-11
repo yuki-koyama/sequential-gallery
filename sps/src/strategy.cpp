@@ -1,6 +1,7 @@
+#include <numeric>
+#include <cassert>
 #include <mathtoolbox/acquisition-functions.hpp>
 #include <nlopt-util.hpp>
-#include <numeric>
 #include <parallel-util.hpp>
 #include <sequential-line-search/acquisition-function.hpp>
 #include <sequential-line-search/preference-regressor.hpp>

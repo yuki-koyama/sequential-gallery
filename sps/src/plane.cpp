@@ -1,9 +1,10 @@
-#include <Eigen/Geometry>
-#include <Eigen/LU>
 #include <iostream>
 #include <numeric>
-#include <sps/plane.hpp>
 #include <vector>
+#include <cassert>
+#include <Eigen/Geometry>
+#include <Eigen/LU>
+#include <sps/plane.hpp>
 
 // This implementation is general but slow because it needs to solve linear systems. It is possible to implement this
 // function much faster for specific plane types.
